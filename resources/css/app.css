@@ -1,0 +1,222 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.tajawal-extralight {
+  font-family: "Tajawal", sans-serif;
+  font-weight: 200;
+  font-style: normal;
+}
+
+.tajawal-light {
+  font-family: "Tajawal", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.tajawal-regular {
+  font-family: "Tajawal", sans-serif;
+  font-style: normal;
+}
+
+.tajawal-medium {
+  font-family: "Tajawal", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.tajawal-bold {
+  font-family: "Tajawal", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.tajawal-extrabold {
+  font-family: "Tajawal", sans-serif;
+  font-weight: 800;
+  font-style: normal;
+}
+
+.tajawal-black {
+  font-family: "Tajawal", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
+.select, select {
+    background-image: url('data:image/svg+xml;base64,...'); /* the arrow */
+}
+
+/* Remove arrow globally (DaisyUI + all browsers) */
+select,
+.select,
+details summary::after,
+.menu li > details > summary::after {
+    background-image: none !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+}
+
+/* DaisyUI adds ▼ using ::after — remove it */
+details summary::after {
+    display: none !important;
+}
+
+/* Remove arrow for <details> dropdowns in navbar */
+.menu li > details > summary::after {
+    display: none !important;
+}
+
+/* -------- PAGE SLIDE ANIMATION -------- */
+.page {
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in-out;
+}
+
+.slide-in-right { animation-name: slideInRight; }
+.slide-out-left { animation-name: slideOutLeft; }
+.slide-in-left  { animation-name: slideInLeft; }
+.slide-out-right { animation-name: slideOutRight; }
+
+@keyframes slideInRight {
+    from { transform: translateX(100%); opacity: 0; }
+    to   { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideOutLeft {
+    from { transform: translateX(0); opacity: 1; }
+    to   { transform: translateX(-100%); opacity: 0; }
+}
+
+@keyframes slideInLeft {
+    from { transform: translateX(-100%); opacity: 0; }
+    to   { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideOutRight {
+    from { transform: translateX(0); opacity: 1; }
+    to   { transform: translateX(100%); opacity: 0; }
+}
+
+.auth-container {
+    position: relative;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+.auth-panel {
+    width: 50%;
+    transition: transform 0.6s ease;
+}
+
+.auth-panel-right {
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 40px;
+}
+
+.slide-left {
+    transform: translateX(-100%);
+}
+
+.slide-right {
+    transform: translateX(0%);
+}
+
+.fade {
+    transition: opacity 0.4s ease;
+}
+
+.auth-container {
+    position: relative;
+    width: 100%;
+    max-width: 1100px;
+    height: 650px;
+    display: flex;
+    overflow: hidden;
+    border-radius: 25px;
+    background: white;
+}
+
+.auth-panel {
+    width: 50%;
+    height: 100%;
+    transition: transform 0.8s cubic-bezier(.25,.8,.25,1);
+}
+
+.auth-panel-right {
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 40px;
+}
+
+.slide-left {
+    transform: translateX(-100%);
+}
+
+.slide-right {
+    transform: translateX(0%);
+}
+
+/* smooth fading */
+.fade-swap {
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+}
+
+.fade-swap.active {
+    opacity: 1;
+}
+
+/* smoother movement inside content */
+.inner-slide {
+    transition: transform 0.6s ease, opacity 0.6s ease;
+}
+
+.auth-container {
+    width: 90%;
+    max-width: 1100px;
+    height: 650px;
+    display: flex;
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    background: white;
+}
+
+/* Both panels */
+.auth-panel-left,
+.auth-panel-right {
+    width: 50%;
+    height: 100%;
+    transition: transform 0.7s cubic-bezier(.25,.8,.25,1);
+    position: relative;
+}
+
+/* Sliding positions */
+.slide-left {
+    transform: translateX(-100%);
+}
+
+.slide-right {
+    transform: translateX(0);
+}
+
+/* Inner content smooth fade + slide */
+.inner-slide {
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
