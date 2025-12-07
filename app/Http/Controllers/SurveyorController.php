@@ -741,7 +741,7 @@ public function submit(Request $request, $survey_id)
             'option_2' => 'nullable|string|max:255',
             'option_3' => 'nullable|string|max:255',
             'option_4' => 'nullable|string|max:255',
-
+            'correct_answer' => 'nullable|string|max:255',
             'true_false_answer' => 'nullable|string|max:10',
             'text_answer' => 'nullable|string|max:255',
 
