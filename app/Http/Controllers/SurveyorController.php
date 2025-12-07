@@ -745,10 +745,6 @@ public function submit(Request $request, $survey_id)
             'true_false_answer' => 'nullable|string|max:10',
             'text_answer' => 'nullable|string|max:255',
 
-            'type' => 'required',
-            'correct_answer' => 'required_if:question_type,multiple',
-            'true_false_answer' => 'required_if:question_type,truefalse|in:true,false',
-            'text_answer' => 'required_if:question_type,text',
         ]);
 
         $correct = null;

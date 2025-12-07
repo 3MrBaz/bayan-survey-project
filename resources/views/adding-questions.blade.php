@@ -109,8 +109,8 @@
                                 <input type="text" :name="'option_' + i"
                                     class="input w-full rounded-md text-[#262626] font-semibold"
                                     :placeholder="'الخيار ' + i">
-                                <input :required="type === 'multiple'" type="radio" name="correct_answer"
-                                    :value="'option_' + i" class="text-amber-400 focus:ring-amber-400">
+                                <input type="radio" name="correct_answer" :value="'option_' + i"
+                                    class="text-amber-400 focus:ring-amber-400">
                             </div>
                         </template>
                     </div>
