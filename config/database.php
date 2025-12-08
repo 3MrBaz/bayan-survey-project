@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Str;
 
+'use strict';
+
 return [
 
     /*
@@ -151,35 +153,34 @@ return [
 
     'redis' => [
 
-        'client' => env('REDIS_CLIENT', 'phpredis'),
+            'client' => env('REDIS_CLIENT', 'phpredis'),
 
-        'options' => [
-            'cluster' => env('REDIS_CLUSTER', 'redis'),
-            'prefix'  => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_database_'),
-            'ssl' => [
-                'verify_peer' => false,   // Laravel Cloud Valkey does not need certificate verification
+            'options' => [
+                'cluster' => env('REDIS_CLUSTER', 'redis'),
+                'prefix'  => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_database_'),
+                'ssl' => [
+                    'verify_peer' => false,
+                ],
             ],
+
+            'default' => [
+                'scheme' => env('REDIS_SCHEME', 'tls'),
+                'host' => env('REDIS_HOST'),
+                'username' => env('REDIS_USERNAME'),
+                'password' => env('REDIS_PASSWORD'),
+                'port' => env('REDIS_PORT'),
+                'database' => env('REDIS_DB', 0),
+            ],
+
+            'cache' => [
+                'scheme' => env('REDIS_SCHEME', 'tls'),
+                'host' => env('REDIS_HOST'),
+                'username' => env('REDIS_USERNAME'),
+                'password' => env('REDIS_PASSWORD'),
+                'port' => env('REDIS_PORT'),
+                'database' => env('REDIS_CACHE_DB', 0),
+            ],
+
         ],
 
-        'default' => [
-            'scheme' => env('REDIS_SCHEME', 'tls'), // <— FORCE TLS
-            'host' => env('REDIS_HOST'),
-            'username' => env('REDIS_USERNAME'),
-            'password' => env('REDIS_PASSWORD'),
-            'port' => env('REDIS_PORT'),
-            'database' => env('REDIS_DB', 0),
-        ],
-
-        'cache' => [
-            'scheme' => env('REDIS_SCHEME', 'tls'), // <— FORCE TLS
-            'host' => env('REDIS_HOST'),
-            'username' => env('REDIS_USERNAME'),
-            'password' => env('REDIS_PASSWORD'),
-            'port' => env('REDIS_PORT'),
-            'database' => env('REDIS_CACHE_DB', 1),
-        ],
-
-    ],
-
-
-];
+    ];
