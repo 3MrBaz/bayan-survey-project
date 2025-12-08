@@ -136,21 +136,16 @@
             </ul>
         </div>
         <div class="navbar-end text-[#ffffe4]">
-            @if ($user && $user->role === 'surveyor')
-                <!-- Content for Surveyors -->
-                <a href="/profile"
-                    class="btn bg-[#262626] text-sm hover:text-[#262626] hover:bg-[#ffffd7] py-3">الحساب</a>
-                <form method="POST" action="{{ route('logout') }}" class="inline">
-                    @csrf
-                    <button type="submit"
-                        class="btn bg-[#262626] text-sm hover:text-[#262626] hover:bg-[#ffffd7] mr-2 px-2 py-3">
-                        تسجيل الخروج
-                    </button>
-                </form>
-            @elseif ($user && $user->role === 'user')
-                <!-- Content for Survey Users -->
-                <a href="/profile"
-                    class="btn bg-[#262626] text-sm hover:text-[#262626] hover:bg-[#ffffd7] py-3">الحساب</a>
+            @php
+                $user = Auth::user();
+            @endphp
+
+            @if ($user)
+                <!-- Logged-in user -->
+                <a href="/profile" class="btn bg-[#262626] text-sm hover:text-[#262626] hover:bg-[#ffffd7] py-3">
+                    الحساب
+                </a>
+
                 <form method="POST" action="{{ route('logout') }}" class="inline">
                     @csrf
                     <button type="submit"
@@ -159,9 +154,10 @@
                     </button>
                 </form>
             @else
-                <!-- Optional fallback -->
-                <a href="/login" class="btn text-sm bg-[#262626] hover:text-[#262626] hover:bg-[#ffffd7] px-3">تسجيل
-                    الدخول</a>
+                <!-- Guest user -->
+                <a href="/login" class="btn text-sm bg-[#262626] hover:text-[#262626] hover:bg-[#ffffd7] px-3">
+                    تسجيل الدخول
+                </a>
             @endif
 
         </div>
