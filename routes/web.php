@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use Illuminate\Container\Attributes\Auth;
@@ -85,12 +84,7 @@ Route::middleware(['auth', 'role:surveyor'])->group(function () {
     Route::get('/export/download', [SurveyorController::class, 'export'])->name('export.file');
     Route::post('/manual-grade', [SurveyorController::class, 'manualGrade'])->name('manual-grade');  
     
-    Route::post('/logout', function (Request $request) {
-        Auth::logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-        return redirect('/');
-    })->name('logout');
+    Route::post('/logout', function () { Auth::logout(); return redirect('/');})->name('logout');
 });
 
 
