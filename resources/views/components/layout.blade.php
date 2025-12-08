@@ -147,7 +147,7 @@
                         تسجيل الخروج
                     </button>
                 </form>
-            @elseif ($user && $user->role === 'surveyUser')
+            @elseif ($user && $user->role === 'user')
                 <!-- Content for Survey Users -->
                 <a href="/profile"
                     class="btn bg-[#262626] text-sm hover:text-[#262626] hover:bg-[#ffffd7] py-3">الحساب</a>
@@ -166,6 +166,7 @@
 
         </div>
     </div>
+
 
     {{ $slot }}
 
