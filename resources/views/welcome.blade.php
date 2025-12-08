@@ -10,7 +10,7 @@
             <div class="max-w-[550px] mt-[-160px]">
                 <h2
                     class="text-center text-[30px] leading-[48px] md:text-[50px] md:leading-[68px] text-white pt-20 lg:pt-0">
-                    مرحبا بمن في منصة <span class="text-amber-400">بيان</span>
+                    مرحبا بكم في منصة <span class="text-amber-400">بيان</span>
                 </h2>
 
                 <p class="text-center text-xl mb-16 mt-5 text-amber-200">برنامج متكامل مخصص لإنشاء الاستبيانات وجمع آراء
