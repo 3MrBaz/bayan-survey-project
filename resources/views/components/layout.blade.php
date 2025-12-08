@@ -136,6 +136,7 @@
             </ul>
         </div>
         <div class="navbar-end text-[#ffffe4]">
+
             @php
                 $user = Auth::user();
             @endphp
@@ -159,6 +160,7 @@
                     تسجيل الدخول
                 </a>
             @endif
+
 
         </div>
     </div>
