@@ -37,12 +37,6 @@
                             class="input w-full rounded-md text-[#262626] font-semibold" placeholder="أدخل الرمز هنا" />
                     </div>
 
-
-                    <div x-show="showCodeInput" x-transition>
-                        <label class="label text-amber-400 text-lg font-semibold mb-2">رمز الاستبيان</label>
-                        <input type="text" name="password"
-                            class="input w-full rounded-md text-[#262626] font-semibold" placeholder="أدخل الرمز هنا" />
-                    </div>
                 </div>
 
                 <div class="flex flex-col space-y-2">
