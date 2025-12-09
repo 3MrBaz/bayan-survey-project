@@ -28,11 +28,15 @@
                     value="0" />
 
                 <div x-data="{ showCodeInput: false }" class="flex flex-col space-y-3">
-                    <div class="flex flex-row items-center">
-                        <label class="label text-amber-400 text-lg font-semibold">اضافة رمز للاستبيان</label>
-                        <input type="checkbox" class="rounded-md text-amber-400 font-semibold m-3"
-                            x-model="showCodeInput" />
+                    <input type="checkbox" x-model="showCodeInput">
+
+                    <div x-show="showCodeInput" x-transition>
+                        <label class="label text-amber-400 text-lg font-semibold mb-2">رمز الاستبيان</label>
+                        <input type="text" name="password" x-bind:disabled="!showCodeInput"
+                            x-bind:value="showCodeInput ? password : ''" x-model="password"
+                            class="input w-full rounded-md text-[#262626] font-semibold" placeholder="أدخل الرمز هنا" />
                     </div>
+
 
                     <div x-show="showCodeInput" x-transition>
                         <label class="label text-amber-400 text-lg font-semibold mb-2">رمز الاستبيان</label>

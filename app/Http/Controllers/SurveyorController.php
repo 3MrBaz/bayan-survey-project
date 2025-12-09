@@ -807,11 +807,16 @@ public function submit(Request $request, $survey_id)
             'view_survey' => 'required|boolean',
         ]);
 
+        // If password checkbox was removed, set password to null
+        if (!$request->has('password') || $request->password === null || $request->password === '') {
+            $validated['password'] = null;
+        }
+
         $survey = Survey::create([
             'name' => $validated['name'],
             'discription' => $validated['discription'],
             'total_answers' => $validated['total_answers'],
-            'password' => $validated['password'] ?? null,
+            'password' => $validated['password'],
             'view_survey' => $validated['view_survey'],
             'user_id' => auth()->id(),
             'question_ids' => json_encode([]),
@@ -819,9 +824,8 @@ public function submit(Request $request, $survey_id)
         ]);
 
         return redirect()->route('adding-questions', ['survey_id' => $survey->id]);
-
-
     }
+
 
     public function viewAddingSurvey() {
         return view('adding-survey');
