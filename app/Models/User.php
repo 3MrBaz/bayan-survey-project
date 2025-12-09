@@ -48,7 +48,7 @@ class User extends Authenticatable
     }
 
     public function surveyAnswers() {
-    return $this->hasMany(SurveyorController::class);
+        return $this->hasMany(SurveyAnswer::class);
     }
 
 }

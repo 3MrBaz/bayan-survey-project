@@ -84,7 +84,9 @@ Route::middleware(['auth', 'role:surveyor'])->group(function () {
     Route::get('/export', [SurveyorController::class, 'exportPage'])->name('export.index');
     Route::get('/export/download', [SurveyorController::class, 'export'])->name('export.file');
     Route::post('/manual-grade', [SurveyorController::class, 'manualGrade'])->name('manual-grade');  
-    
+
+});
+
     Route::post('/logout', function (Request $request) {
         Auth::logout();
 
@@ -93,10 +95,6 @@ Route::middleware(['auth', 'role:surveyor'])->group(function () {
 
         return redirect('/');
     })->name('logout');
-
-});
-
-
 
 // ==================================
 // PUBLIC SURVEY ACCESS
