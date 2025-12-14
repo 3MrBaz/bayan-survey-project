@@ -12,6 +12,19 @@ use Illuminate\Support\Facades\Auth;
 class SurveyorController extends Controller
 {
 
+    
+    public function delete($id) {
+        $q = Question::find($id);
+
+        if (!$q) {
+            return response()->json(['success' => false]);
+        }
+
+        $q->delete();
+
+        return response()->json(['success' => true]);
+    }
+
     public function manualGrade(Request $request) {
         $request->validate([
             'answer_id'        => 'required|exists:survey_answers,id',

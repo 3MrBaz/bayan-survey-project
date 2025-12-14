@@ -298,6 +298,32 @@
                     container.innerHTML = "<p class='text-center text-red-600'>حدث خطأ أثناء تحميل الأسئلة</p>";
                 });
         });
+
+        function deleteCategoryQuestion(id) {
+            if (!confirm("هل أنت متأكد من حذف هذا السؤال؟")) return;
+
+            fetch(`/delete-question/${id}`, {
+                    method: "DELETE",
+                    headers: {
+                        "X-CSRF-TOKEN": "{{ csrf_token() }}"
+                    }
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        // تحديث الواجهة بدون إعادة تحميل
+                        document.querySelector(`button[onclick="deleteCategoryQuestion(${id})"]`)
+                            .closest("li, div")
+                            .remove();
+                    } else {
+                        alert("حدث خطأ أثناء الحذف");
+                    }
+                })
+                .catch(err => {
+                    console.error(err);
+                    alert("تعذر الاتصال بالخادم");
+                });
+        }
     </script>
 
 </x-layout>

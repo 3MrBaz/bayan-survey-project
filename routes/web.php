@@ -84,6 +84,7 @@ Route::middleware(['auth', 'role:surveyor'])->group(function () {
     Route::get('/export', [SurveyorController::class, 'exportPage'])->name('export.index');
     Route::get('/export/download', [SurveyorController::class, 'export'])->name('export.file');
     Route::post('/manual-grade', [SurveyorController::class, 'manualGrade'])->name('manual-grade');  
+    Route::delete('/delete-question/{id}', [SurveyorController::class, 'delete'])->name('delete-question');
 
 });
 
