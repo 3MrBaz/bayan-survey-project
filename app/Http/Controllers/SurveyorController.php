@@ -872,19 +872,19 @@ public function submit(Request $request, $survey_id)
     public function viewSurveys(Request $request) {
         $userId = auth()->id();
 
-        // Get surveys the user already completed
-        $solvedSurveyIds = SurveyAnswer::where('user_id', $userId)
+        // Surveys the user already solved
+        $solvedSurveyIds = SurveyResult::where('user_id', $userId)
             ->pluck('survey_id')
             ->unique();
 
         $surveys = Survey::where('view_survey', true)
             ->whereNotIn('id', $solvedSurveyIds)
 
-            // ⬇️ Hide surveys that reached their total answer limit
+            // ⬇️ Use survey_results to check submission count
             ->whereRaw('(
                 SELECT COUNT(*) 
-                FROM survey_answers 
-                WHERE survey_answers.survey_id = surveys.id
+                FROM survey_results 
+                WHERE survey_results.survey_id = surveys.id
             ) < surveys.total_answers')
 
             ->latest()
@@ -892,6 +892,7 @@ public function submit(Request $request, $survey_id)
 
         return view('surveys', compact('surveys'));
     }
+
 
     public function viewMySurveys() {
         $surveys = Survey::where('user_id', auth()->id())->get();
