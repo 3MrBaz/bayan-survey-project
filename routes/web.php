@@ -64,10 +64,6 @@ Route::middleware(['auth', 'role:surveyor'])->group(function () {
     Route::post('/import-questions', [SurveyorController::class, 'importQuestions'])->name('import-questions');
     Route::get('/import-questions', [SurveyorController::class, 'viewImportQuestions'])->name('view-import-questions');
 
-    // RESULTS
-    Route::get('/survey/{survey_id}/results', [SurveyorController::class, 'results'])
-        ->name('survey.results');
-
     // TOGGLE VISIBILITY
     Route::patch('/survey/{id}/toggle-visibility',[SurveyorController::class, 'toggleVisibility'])
         ->name('survey.toggle_visibility');
@@ -123,3 +119,5 @@ Route::get('/surveys-ajax', [UserController::class, 'ajaxSearch'])->name('survey
 // PUBLIC SURVEYS LIST
 Route::get('/surveys', [UserController::class, 'viewSurveys'])->name('surveys');
 
+// RESULTS
+Route::get('/survey/{survey_id}/results', [SurveyorController::class, 'results'])->name('survey.results');
