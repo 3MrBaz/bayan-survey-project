@@ -430,7 +430,8 @@ public function submit(Request $request, $survey_id)
     $timeSpent = 0;
 
     if ($startTime) {
-        $timeSpent = now()->diffInSeconds(Carbon::createFromTimestamp($startTime));
+        $start = Carbon::createFromTimestamp($startTime);
+        $timeSpent = $start->diffInSeconds(now());
     }
         
     foreach ($shownQuestions as $questionId) {
