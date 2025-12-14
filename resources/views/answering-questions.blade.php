@@ -20,7 +20,12 @@
 
                     <h2 class="text-2xl font-semibold text-amber-400 mb-4 text-center">{{ $survey->name }}</h2>
 
-                    <input type="hidden" name="start_time" value="{{ time() }}">
+                    <input type="hidden" id="start_time" name="start_time">
+
+                    <script>
+                        // Store time in UNIX seconds
+                        document.getElementById("start_time").value = Math.floor(Date.now() / 1000);
+                    </script>
 
                     <ul class="space-y-3">
                         @foreach ($questions as $q)

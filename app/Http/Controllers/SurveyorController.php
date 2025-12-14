@@ -427,9 +427,11 @@ public function submit(Request $request, $survey_id)
     $answeredQuestions = [];
     $startTime = $request->input('start_time');
 
-    $timeSpent = $startTime
-        ? now()->diffInSeconds(\Carbon\Carbon::createFromTimestamp($startTime))
-        : 0;
+    $timeSpent = 0;
+
+    if ($startTime) {
+        $timeSpent = now()->diffInSeconds(Carbon::createFromTimestamp($startTime));
+    }
         
     foreach ($shownQuestions as $questionId) {
 
