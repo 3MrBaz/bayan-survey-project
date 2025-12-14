@@ -146,14 +146,15 @@
                 <a href="/profile" class="btn bg-[#262626] text-sm hover:text-[#262626] hover:bg-[#ffffd7] py-3">
                     الحساب
                 </a>
-
-                <form method="POST" action="{{ route('logout') }}" class="inline">
-                    @csrf
-                    <button type="submit"
-                        class="btn bg-[#262626] text-sm hover:text-[#262626] hover:bg-[#ffffd7] mr-2 px-2 py-3">
-                        تسجيل الخروج
-                    </button>
-                </form>
+                <div class="align-middle">
+                    <form method="POST" action="{{ route('logout') }}" class="inline">
+                        @csrf
+                        <button type="submit"
+                            class="btn bg-[#262626] text-sm hover:text-[#262626] hover:bg-[#ffffd7] mr-2 px-2 py-3">
+                            تسجيل الخروج
+                        </button>
+                    </form>
+                </div>
             @else
                 <!-- Guest user -->
                 <a href="/login" class="btn text-sm bg-[#262626] hover:text-[#262626] hover:bg-[#ffffd7] px-3">
