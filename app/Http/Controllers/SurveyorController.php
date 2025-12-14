@@ -869,29 +869,26 @@ public function submit(Request $request, $survey_id)
         return redirect()->back();
     }
 
-    public function viewSurveys(Request $request) {
-        $userId = auth()->id();
+public function viewSurveys(Request $request) {
+    $userId = auth()->id();
 
-        // Surveys the user already solved
-        $solvedSurveyIds = SurveyResult::where('user_id', $userId)
-            ->pluck('survey_id')
-            ->unique();
+    // Surveys the user already solved
+    $solvedSurveyIds = SurveyAnswer::where('user_id', $userId)
+        ->pluck('survey_id')
+        ->unique();
 
-        $surveys = Survey::where('view_survey', true)
-            ->whereNotIn('id', $solvedSurveyIds)
+    $surveys = Survey::where('view_survey', true)
+        ->whereNotIn('id', $solvedSurveyIds)
 
-            // ⬇️ Use survey_results to check submission count
-            ->whereRaw('(
-                SELECT COUNT(*) 
-                FROM survey_results 
-                WHERE survey_results.survey_id = surveys.id
-            ) < surveys.total_answers')
+        // ✔ Hide surveys that reached their limit
+        ->whereColumn('number_of_answers', '<', 'total_answers')
 
-            ->latest()
-            ->get();
+        ->latest()
+        ->get();
 
-        return view('surveys', compact('surveys'));
-    }
+    return view('surveys', compact('surveys'));
+}
+
 
 
     public function viewMySurveys() {
