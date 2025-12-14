@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Survey;
 use App\Models\Question;
 use App\Models\SurveyAnswer;
@@ -12,6 +13,11 @@ use Illuminate\Support\Facades\Auth;
 class SurveyorController extends Controller
 {
 
+    public function startSurvey(Request $request, $surveyId) {
+        session(['survey_start_time_' . $surveyId => now()]);
+
+        return view('survey.take', compact('surveyId'));
+    }
     
     public function delete($id) {
         $q = Question::find($id);
@@ -419,9 +425,12 @@ public function submit(Request $request, $survey_id)
 
     $score = 0;
     $answeredQuestions = [];
-    $startTime = $request->input('startTime'); 
-    $timeSpent = $startTime ? now()->diffInSeconds($startTime) : 0;
+    $startTime = $request->input('start_time');
 
+    $timeSpent = $startTime
+        ? now()->diffInSeconds(\Carbon\Carbon::createFromTimestamp($startTime))
+        : 0;
+        
     foreach ($shownQuestions as $questionId) {
 
         $question = $survey->questions->firstWhere('id', $questionId);

@@ -89,4 +89,9 @@
                         fill="#F9B800"></path>
                 </svg></div>
         </div>
+
+        <input type="hidden" id="start_time" name="start_time">
+        <script>
+            document.getElementById("start_time").value = Math.floor(Date.now() / 1000);
+        </script>
     </x-layout>

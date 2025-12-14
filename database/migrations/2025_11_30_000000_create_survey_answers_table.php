@@ -18,6 +18,7 @@ public function up()
         $table->foreignId('question_id')->constrained()->onDelete('cascade');
         $table->text('answer')->nullable();
         $table->json('meta')->nullable();
+        
 
         $table->timestamps();
     });
