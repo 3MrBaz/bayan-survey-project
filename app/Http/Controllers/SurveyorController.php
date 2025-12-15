@@ -879,14 +879,10 @@ public function submit(Request $request, $survey_id)
             ->pluck('survey_id')
             ->unique();
 
-        $surveys = Survey::where('view_survey', true)
-            ->whereNotIn('id', $solvedSurveyIds)
-
-            // ✔ Hide surveys that reached their limit
-            ->whereColumn('number_of_answers', '<', 'total_answers')
-
-            ->latest()
-            ->get();
+    $surveys = Survey::where('view_survey', true)
+        ->whereColumn('number_of_answers', '<', 'total_answers')
+        ->latest()
+        ->get();
 
         return view('surveys', compact('surveys'));
     }
