@@ -517,6 +517,8 @@ public function submit(Request $request, $survey_id)
         "answered_questions" => $answeredQuestions, // JSON for stats
     ]);
 
+    $survey->increment('number_of_answers');
+
     return redirect()->route("survey.results", $survey_id);
 }
 
@@ -873,7 +875,7 @@ public function submit(Request $request, $survey_id)
         $userId = auth()->id();
 
         // Surveys the user already solved
-        $solvedSurveyIds = SurveyAnswer::where('user_id', $userId)
+        $solvedSurveyIds = SurveyResult::where('user_id', $userId)
             ->pluck('survey_id')
             ->unique();
 
