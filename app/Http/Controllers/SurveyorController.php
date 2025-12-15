@@ -875,7 +875,7 @@ public function submit(Request $request, $survey_id)
         $userId = auth()->id();
 
         // Surveys the user already solved
-        $solvedSurveyIds = SurveyResult::where('user_id', $userId)
+        $solvedSurveyIds = SurveyAnswers::where('user_id', $userId)
             ->pluck('survey_id')
             ->unique();
 
